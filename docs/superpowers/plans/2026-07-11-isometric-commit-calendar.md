@@ -63,7 +63,7 @@ rg -F 'cron: "0 0 * * *"' "$workflow"
 
 ruby -e 'require "yaml"; YAML.safe_load(File.read(ARGV.fetch(0)), aliases: true)' "$workflow"
 
-if git grep -En 'github_pat_|gh[pousr]_[A-Za-z0-9]+' -- ':!tests/profile_contract.sh'; then
+if git grep -En 'github_pat_|gh[pousr]_[A-Za-z0-9]+' -- ':!tests/profile_contract.sh' ':!docs/**'; then
   echo "A GitHub token-like value is present in tracked content" >&2
   exit 1
 fi
